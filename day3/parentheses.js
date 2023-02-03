@@ -1,6 +1,11 @@
 // 올바른 괄호인지 판별하는 문제
 
 /**
+ * 문제 출처
+ * @link https://school.programmers.co.kr/learn/courses/13213/lessons/91074
+ */
+
+/**
  * 직접 배열에 push, pop하는 방법.
  * @param {Array<'('|')'>} s
  * @returns 모든 괄호가 닫혔을 경우 true, 아니면 false
@@ -27,12 +32,11 @@ function solution1(s) {
 }
 
 /**
- * 스택에 남은 요소의 수를 이용하는 방법
+ * 스택에 남은 요소의 수를 이용하는 방법. 메모리를 적게 사용하는 점이 좋다.
  * @param {Array<'('|')'>} s
  * @returns 모든 괄호가 닫혔을 경우 true, 아니면 false
  */
 function solution2(s) {
-  // 메모리를 적게 사용하는 점이 좋다.
   let count = 0;
   for (const c of s) {
     if (c === "(") {
