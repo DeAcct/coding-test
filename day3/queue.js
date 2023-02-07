@@ -57,7 +57,7 @@ class LinkedListQueue {
 
   enqueue(newValue) {
     const newNode = new Node(newValue);
-    if (this.head === null) {
+    if (!this.head) {
       // newNode를 this.tail에, this.tail을 this.head에.
       // 요소가 하나밖에 없기에 자기 자신이 시작과 동시에 끝인 것을 표현.
       this.head = this.tail = newNode;

@@ -1,3 +1,6 @@
+//import { test } from "timeTest.js";
+const { test } = require("./timeTest");
+
 /**
  * @link https://school.programmers.co.kr/learn/courses/13213/lessons/91078
  */
@@ -49,7 +52,7 @@ function solution(priorities, location) {
     queue.enqueue([priorities[i], i]);
   }
 
-  // priorities를 정렬하여 불필요한 최대값을 탐색을 줄인다.
+  // priorities를 정렬하여 불필요한 최대값 탐색을 줄인다.
   priorities.sort((a, b) => b - a);
 
   // 프린트된 문서의 개수를 세는 변수
