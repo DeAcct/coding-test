@@ -95,13 +95,18 @@ class Tree {
   }
   display() {
     const queue = new LinkedListQueue();
+    // root를 큐에 담는다.
     queue.enqueue(this.root);
     while (queue.size) {
+      // 현재 노드를 큐에서 뺀다.
       const currentNode = queue.dequeue();
+      // 현재 노드를 출력한다.
       console.log(currentNode.value);
+      // 좌우에 노드가 있다면 큐에 넣는다.
       if (currentNode.left) queue.enqueue(currentNode.left);
       if (currentNode.right) queue.enqueue(currentNode.right);
     }
+    // 좌우에 노드가 전부 없다면 가장 마지막 레벨에 도달한 것이므로 빠져나간다.
   }
 }
 
