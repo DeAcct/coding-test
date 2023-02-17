@@ -40,6 +40,7 @@ class MaxHeap {
     }
   }
   pop() {
+    if (this.isEmpty) return;
     if (this.heap.length === 2) return this.heap.pop();
 
     const returnValue = this.heap[1];
@@ -55,16 +56,12 @@ class MaxHeap {
     ) {
       // 오른쪽 자식이 더 크면 자신과 오른쪽 자식의 자리를 바꾼다.
       if (this.heap[leftIndex] < this.heap[rightIndex]) {
-        const temp = this.heap[currentIndex];
-        this.heap[currentIndex] = this.heap[rightIndex];
-        this.heap[rightIndex] = temp;
+        this._swap(currentIndex, rightIndex);
         currentIndex = rightIndex;
       }
       // 왼쪽 자식이 더 크면 자신과 왼쪽 자식의 자리를 바꾼다.
       else {
-        const temp = this.heap[currentIndex];
-        this.heap[currentIndex] = this.heap[leftIndex];
-        this.heap[leftIndex] = temp;
+        this._swap(currentIndex, leftIndex);
         currentIndex = leftIndex;
       }
       leftIndex = currentIndex * 2;
@@ -72,7 +69,15 @@ class MaxHeap {
     }
     return returnValue;
   }
+  _swap(a, b) {
+    // 편의를 위해 배열의 요소를 swap하는 함수 작성
+    [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
+  }
+  get isEmpty() {
+    return this.heap.length === 1;
+  }
 }
+
 const heap = new MaxHeap();
 heap.push(45);
 heap.push(36);
@@ -89,3 +94,67 @@ array.push(heap.pop());
 array.push(heap.pop());
 console.log(heap.heap);
 console.log(array);
+
+class MinHeap {
+  constructor() {
+    this.heap = [null];
+  }
+  push(value) {
+    this.heap.push(value);
+    let currentIndex = this.heap.length - 1;
+    let parentIndex = Math.floor(currentIndex / 2);
+
+    // 부모요소가 자신보다 작다면 자신과 부모요소의 자리를 바꾼다.
+    while (parentIndex !== 0 && this.heap[parentIndex] > value) {
+      const temp = this.heap[parentIndex];
+      this.heap[parentIndex] = value;
+      this.heap[currentIndex] = temp;
+
+      currentIndex = parentIndex;
+      parentIndex = Math.floor(currentIndex / 2);
+    }
+  }
+  pop() {
+    if (this.isEmpty) return;
+    if (this.heap.length === 2) return this.heap.pop();
+
+    const returnValue = this.heap[1];
+    this.heap[1] = this.heap.pop();
+
+    let currentIndex = 1;
+    let leftIndex = 2;
+    let rightIndex = 3;
+    // 자식 정점보다 자신이 클 경우 swap을 멈춘다.
+    while (
+      this.heap[currentIndex] > this.heap[leftIndex] ||
+      this.heap[currentIndex] > this.heap[rightIndex]
+    ) {
+      // 오른쪽 자식이 더 크면 자신과 오른쪽 자식의 자리를 바꾼다.
+      if (this.heap[leftIndex] > this.heap[rightIndex]) {
+        //const temp = this.heap[currentIndex];
+        //this.heap[currentIndex] = this.heap[rightIndex];
+        //this.heap[rightIndex] = temp;
+        this._swap(currentIndex, rightIndex);
+        currentIndex = rightIndex;
+      }
+      // 왼쪽 자식이 더 크면 자신과 왼쪽 자식의 자리를 바꾼다.
+      else {
+        //const temp = this.heap[currentIndex];
+        //this.heap[currentIndex] = this.heap[leftIndex];
+        this.heap[leftIndex] = temp;
+        this._swap(currentIndex, leftIndex);
+        currentIndex = leftIndex;
+      }
+      leftIndex = currentIndex * 2;
+      rightIndex = currentIndex * 2 + 1;
+    }
+    return returnValue;
+  }
+  get isEmpty() {
+    return this.heap.length === 1;
+  }
+  _swap(a, b) {
+    // 편의를 위해 배열의 요소를 swap하는 함수 작성
+    [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
+  }
+}

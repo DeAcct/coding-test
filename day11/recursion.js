@@ -146,7 +146,7 @@ function combinations(arr, r) {
 console.log(combinations([50, 10, 20, 6, 7, 8], 2));
 
 /**
- * 조합을 구해서 각 원소의 합을 반환합니다.
+ * 조합을 구해서 각 원소의 합을 반환합니다. 중복되는 숫자는 하나만 남깁니다.
  * @param {Array<number>} numbers 원본 배열입니다.
  * @returns 각 원소의 합을 담은 배열
  */
