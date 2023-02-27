@@ -1,6 +1,3 @@
-//import { test } from "timeTest.js";
-const { test } = require("./timeTest");
-
 /**
  * @link https://school.programmers.co.kr/learn/courses/13213/lessons/91078
  */
